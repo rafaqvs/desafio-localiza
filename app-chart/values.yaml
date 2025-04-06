@@ -1,0 +1,10 @@
+domain: app.seu-dominio.com
+certificateArn: arn:aws:acm:us-east-1:123456789012:certificate/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx
+
+backend:
+  image: <seu-registro>/backend:latest
+  port: 3000
+
+frontend:
+  image: <seu-registro>/frontend:latest
+  port: 80
