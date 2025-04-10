@@ -23,3 +23,12 @@ module "eks" {
   private_subnet_ids = module.network.private_subnet_ids
 }
 
+module "alb_ingress" {
+  source              = "./modules/alb_ingress"
+  cluster_name        = module.eks.cluster_name
+  region              = var.aws_region
+  vpc_id              = module.network.vpc_id
+  oidc_provider_url   = data.aws_eks_cluster.eks.identity[0].oidc[0].issuer
+  oidc_provider_arn   = "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/<OIDC_PROVIDER>" # <- substituir com valores reais
+}
+
