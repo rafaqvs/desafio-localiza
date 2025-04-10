@@ -1,0 +1,16 @@
+ingress:
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:REGION:ACCOUNT_ID:certificate/EXAMPLE"
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+  host: "desafio.localiza.com.br"
+  frontend:
+    path: /frontend
+    service: frontend
+    port: 80
+  backend:
+    path: /backend
+    service: backend
+    port: 80
