@@ -1,0 +1,4 @@
+apiVersion: v2
+name: frontend
+description: Chart para aplicação frontend
+version: 0.1.0
