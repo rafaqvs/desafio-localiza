@@ -8,3 +8,9 @@ image:
 service:
   type: ClusterIP
   port: 80
+
+database:
+  host: mysql.default.svc.cluster.local
+  user: localiza
+  password: localizapass
+  name: localiza_db
