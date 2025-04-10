@@ -1,4 +1,4 @@
-resource "aws_db_subnet_group" "this" {
+resource "aws_db_subnet_group" "main" {
   name       = "main-db-subnet-group"
   subnet_ids = var.db_subnet_ids
 
@@ -9,14 +9,14 @@ resource "aws_db_subnet_group" "this" {
 
 resource "aws_security_group" "rds" {
   name        = "rds-sg"
-  description = "SG for RDS"
+  description = "Allow DB access"
   vpc_id      = var.vpc_id
 
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"] # Ajuste de acordo com sua VPC
+    cidr_blocks = ["10.0.0.0/16"] # ou só private subnets depois
   }
 
   egress {
@@ -31,15 +31,15 @@ resource "aws_security_group" "rds" {
   }
 }
 
-resource "aws_db_instance" "this" {
+resource "aws_db_instance" "main" {
   identifier             = "localiza-db"
   allocated_storage      = 20
-  engine                 = var.engine
-  instance_class         = var.instance_class
+  engine                 = "mysql"
+  instance_class         = "db.t3.micro"
   name                   = var.db_name
   username               = var.db_username
   password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.this.name
+  db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = [aws_security_group.rds.id]
   skip_final_snapshot    = true
 
@@ -47,3 +47,4 @@ resource "aws_db_instance" "this" {
     Name = "localiza-db"
   }
 }
+
