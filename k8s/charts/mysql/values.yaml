@@ -1,0 +1,14 @@
+auth:
+  rootPassword: rootpass123
+  username: localiza
+  password: localizapass
+  database: localiza_db
+
+primary:
+  service:
+    type: ClusterIP
+    port: 3306
+  persistence:
+    enabled: true
+    size: 8Gi
+    storageClass: gp2
