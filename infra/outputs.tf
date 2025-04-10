@@ -1,7 +1,7 @@
-output "db_endpoint" {
-  value = module.rds.endpoint
+output "vpc_id" {
+  value = module.network.vpc_id
 }
 
-output "db_port" {
-  value = module.rds.port
+output "rds_endpoint" {
+  value = module.rds.rds_endpoint
 }
