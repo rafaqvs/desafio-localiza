@@ -1,0 +1,4 @@
+apiVersion: v2
+name: app-ingress
+description: Ingress para as aplicações frontend e backend
+version: 0.1.0
