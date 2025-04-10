@@ -1,0 +1,4 @@
+apiVersion: v2
+name: mysql
+description: Banco de dados MySQL
+version: 0.1.0
