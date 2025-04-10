@@ -1,7 +1,17 @@
-module "rds" {
-  source = "./modules/rds"
+provider "aws" {
+  region = var.region
+}
 
-  private_subnet_ids = [aws_subnet.db_subnet1.id, aws_subnet.db_subnet2.id]
-  sg_id              = aws_security_group.db_sg.id
-  db_password        = var.db_password
+module "network" {
+  source    = "./modules/network"
+  vpc_cidr  = "10.0.0.0/16"
+  azs       = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}
+
+module "rds" {
+  source        = "./modules/rds"
+  vpc_id        = module.network.vpc_id
+  db_subnet_ids = module.network.db_subnet_ids
+  db_username   = "admin"
+  db_password   = "SenhaSegura123!"
 }
