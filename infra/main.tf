@@ -16,3 +16,10 @@ module "rds" {
   db_username    = var.db_username
   db_password    = var.db_password
 }
+
+module "eks" {
+  source             = "./modules/eks"
+  cluster_name       = "localiza-eks"
+  private_subnet_ids = module.network.private_subnet_ids
+}
+
